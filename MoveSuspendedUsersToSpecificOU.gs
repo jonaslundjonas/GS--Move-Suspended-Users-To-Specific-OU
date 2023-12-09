@@ -18,7 +18,7 @@ function onOpen() {
 }
 
 function moveSuspendedAccounts() {
-  const targetOU = "/Suspended";
+  const targetOU = "/Suspended Users";
   const suspendedUsers = getSuspendedUsers(targetOU);
   const targetOuPath = getOuPath(targetOU);
 
@@ -37,25 +37,30 @@ function moveSuspendedAccounts() {
 function getSuspendedUsers(targetOU) {
   const suspendedUsers = [];
 
-  // Add your domain here
-  const response = AdminDirectory.Users.list({domain: 'adminaccount@yourdomain.com', maxResults: 500});
+  // Add your customer ID here
+  const customerId = 'xxxxxxxxx'; // Replace with your customer ID
+  const response = AdminDirectory.Users.list({
+    customer: customerId,
+    maxResults: 500,
+    query: 'isSuspended=true'
+  });
   const users = response.users;
 
   if (users) {
     for (const user of users) {
-      if (user.suspended && user.orgUnitPath !== targetOU) {
+      if (user.orgUnitPath !== targetOU) {
         suspendedUsers.push(user);
       }
     }
   }
 
-  logToSheet("Number of suspended users to move: " + suspendedUsers.length);
+  logToSheet("Amount of users to move: " + suspendedUsers.length);
   return suspendedUsers;
 }
 
 function getOuPath(targetOU) {
   // Add your Customer ID here
-  const customerId = 'yourcustomerid';
+  const customerId = 'XXXXXX'; // Replace with your customer ID
   const orgUnits = AdminDirectory.Orgunits.list(customerId).organizationUnits;
 
   for (const orgUnit of orgUnits) {
