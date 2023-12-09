@@ -5,7 +5,7 @@
 // The Script can be runned from the script menu if requiered
 // Logs will be added to the sheet
 
-// Requires an OU named Suspended
+// Requires an OU named Suspended Users
 // Enable the following APIs in services to the right:
 // 1. Admin SDK Directory API
 // 2. Google Sheets API
