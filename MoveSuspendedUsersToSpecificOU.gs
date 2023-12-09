@@ -6,7 +6,7 @@
 // Logs will be added to the sheet
 
 // Requires an OU named Suspended Users
-// Enable the following APIs in services to the right:
+// Enable the following APIs in services to the right in the editor:
 // 1. Admin SDK Directory API
 // 2. Google Sheets API
 
